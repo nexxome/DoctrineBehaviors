@@ -10,7 +10,6 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Contract\Entity\TreeNodeInterface;
 use Knp\DoctrineBehaviors\Exception\ShouldNotHappenException;
 use Knp\DoctrineBehaviors\Exception\TreeException;
-use Nette\Utils\Json;
 
 trait TreeNodeMethodsTrait
 {
@@ -188,7 +187,7 @@ trait TreeNodeMethodsTrait
     {
         $tree = $this->toArray($prepare);
 
-        return Json::encode($tree);
+        return json_encode($tree);
     }
 
     /**
