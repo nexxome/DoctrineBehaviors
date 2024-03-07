@@ -7,7 +7,6 @@ namespace Knp\DoctrineBehaviors\EventSubscriber;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
-use Doctrine\ORM\Event\PostLoadEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
@@ -64,7 +63,7 @@ final class SluggableEventSubscriber
         return $classMetadataInfo->hasField(self::SLUG);
     }
 
-    private function processLifecycleEventArgs(PrePersistEventArgs|PostLoadEventArgs $lifecycleEventArgs): void
+    private function processLifecycleEventArgs(PrePersistEventArgs|PreUpdateEventArgs $lifecycleEventArgs): void
     {
         $entity = $lifecycleEventArgs->getEntity();
         if (! $entity instanceof SluggableInterface) {
