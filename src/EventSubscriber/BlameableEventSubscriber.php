@@ -67,7 +67,7 @@ final class BlameableEventSubscriber
      */
     public function prePersist(PrePersistEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof BlameableInterface) {
             return;
         }
@@ -98,7 +98,7 @@ final class BlameableEventSubscriber
      */
     public function preUpdate(PreUpdateEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof BlameableInterface) {
             return;
         }
@@ -120,7 +120,7 @@ final class BlameableEventSubscriber
      */
     public function preRemove(PreRemoveEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof BlameableInterface) {
             return;
         }

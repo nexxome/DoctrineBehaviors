@@ -39,7 +39,7 @@ final class UuidableEventSubscriber
 
     public function prePersist(PrePersistEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof UuidableInterface) {
             return;
         }

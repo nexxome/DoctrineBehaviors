@@ -157,7 +157,7 @@ final class TranslatableEventSubscriber
 
     private function setLocales(PrePersistEventArgs|PostLoadEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof TranslatableInterface) {
             return;
         }

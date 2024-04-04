@@ -25,7 +25,7 @@ final class LoggableEventSubscriber
 
     public function postPersist(PostPersistEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof LoggableInterface) {
             return;
         }
@@ -38,7 +38,7 @@ final class LoggableEventSubscriber
 
     public function postUpdate(PostUpdateEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof LoggableInterface) {
             return;
         }
@@ -48,7 +48,7 @@ final class LoggableEventSubscriber
 
     public function preRemove(PreRemoveEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
 
         if ($entity instanceof LoggableInterface) {
             $this->logger->log(LogLevel::INFO, $entity->getRemoveLogMessage());
@@ -60,9 +60,9 @@ final class LoggableEventSubscriber
      */
     private function logChangeSet(PostPersistEventArgs|PostUpdateEventArgs $lifecycleEventArgs): void
     {
-        $entityManager = $lifecycleEventArgs->getEntityManager();
+        $entityManager = $lifecycleEventArgs->getObjectManager();
         $unitOfWork = $entityManager->getUnitOfWork();
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
 
         $entityClass = $entity::class;
         $classMetadata = $entityManager->getClassMetadata($entityClass);

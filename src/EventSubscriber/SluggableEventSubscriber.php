@@ -65,7 +65,7 @@ final class SluggableEventSubscriber
 
     private function processLifecycleEventArgs(PrePersistEventArgs|PreUpdateEventArgs $lifecycleEventArgs): void
     {
-        $entity = $lifecycleEventArgs->getEntity();
+        $entity = $lifecycleEventArgs->getObject();
         if (! $entity instanceof SluggableInterface) {
             return;
         }
